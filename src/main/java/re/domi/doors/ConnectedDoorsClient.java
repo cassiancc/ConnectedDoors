@@ -28,7 +28,7 @@ public class ConnectedDoorsClient implements ClientModInitializer
             ConnectedDoors.serverModPresent = ClientPlayNetworking.canSend(ConnectedDoors.PACKET_ID);
             ConnectedDoorsClient.serverBlacklisted = false;
 
-            ServerInfo serverInfo = handler.getServerInfo();
+            ServerInfo serverInfo = client.getCurrentServerEntry();
 
             if (serverInfo != null &&
                 (hasBlacklistMatch(Config.serverIpBlacklist, serverInfo.address) || hasBlacklistMatch(Config.serverNameBlacklist, serverInfo.name)))
