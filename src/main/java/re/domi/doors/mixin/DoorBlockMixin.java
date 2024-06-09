@@ -56,7 +56,7 @@ public class DoorBlockMixin extends Block
                 Vec3d adjustedHitPos = hit.getPos().add(neighborPos.getX() - pos.getX(), neighborPos.getY() - pos.getY(), neighborPos.getZ() - pos.getZ());
                 BlockHitResult neighborHitResult = new BlockHitResult(adjustedHitPos, hit.getSide(), neighborPos, hit.isInsideBlock());
 
-                ConnectedDoorsClient.sendUsePacket(world, hand, neighborHitResult);
+                ConnectedDoorsClient.sendUsePacket(hand, neighborHitResult, pos);
             }
 
             return true;

@@ -56,7 +56,7 @@ public class FenceGateBlockMixin
                     Vec3d adjustedHitPos = hit.getPos().add(blockPos.getX() - pos.getX(), blockPos.getY() - pos.getY(), blockPos.getZ() - pos.getZ());
                     BlockHitResult adjustedHitResult = new BlockHitResult(adjustedHitPos, hit.getSide(), blockPos, hit.isInsideBlock());
 
-                    ConnectedDoorsClient.sendUsePacket(world, hand, adjustedHitResult);
+                    ConnectedDoorsClient.sendUsePacket(hand, adjustedHitResult, pos);
                 }
                 else
                 {

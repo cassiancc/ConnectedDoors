@@ -11,8 +11,8 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import re.domi.doors.mixin.ClientPlayerInteractionManagerMixin;
 
 public class ConnectedDoorsClient implements ClientModInitializer
 {
@@ -39,11 +39,10 @@ public class ConnectedDoorsClient implements ClientModInitializer
     }
 
     @Environment(EnvType.CLIENT)
-    public static void sendUsePacket(World world, Hand hand, BlockHitResult hit)
+    public static void sendUsePacket(Hand hand, BlockHitResult hit, BlockPos pos)
     {
         //noinspection ConstantConditions
-        ((ClientPlayerInteractionManagerMixin)MinecraftClient.getInstance().interactionManager).callSendSequencedPacket((ClientWorld)world, i -> new PlayerInteractBlockC2SPacket(hand, hit, i));
-    }
+        MinecraftClient.getInstance().getNetworkHandler().sendPacket(new PlayerInteractBlockC2SPacket(hand, new BlockHitResult(hit.getPos(), hit.getSide(), pos, hit.isInsideBlock())));    }
 
     private static boolean hasBlacklistMatch(String blacklist, String toMatch)
     {

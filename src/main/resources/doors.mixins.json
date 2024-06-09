@@ -7,9 +7,6 @@
     "DoorBlockMixin",
     "FenceGateBlockMixin"
   ],
-  "client": [
-    "ClientPlayerInteractionManagerMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }
